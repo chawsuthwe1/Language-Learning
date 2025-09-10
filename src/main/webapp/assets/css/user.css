@@ -1,0 +1,185 @@
+/* ============= Base & Theme ============= */
+:root{
+  --violet:#8b5cf6;
+  --violet-2:#c084fc;
+  --rose:#f0b3e6;
+  --text:#262636;
+  --muted:#7A7A8C;
+  --ring:rgba(124,58,237,.28);
+}
+
+html, body { height: 100%; }
+
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+  background:
+    radial-gradient(900px 600px at 85% 18%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(700px 520px at 12% 70%, rgba(255,255,255,.35), transparent 70%),
+    linear-gradient(135deg, #a98dff 0%, #cfb2ff 35%, #f4c6e5 100%);
+  color: var(--text);
+}
+
+/* ============= Header (fixed) ============= */
+header{
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  background:#fff;
+  padding:1.2rem 2rem;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 8px 30px rgba(0,0,0,0.06);
+}
+
+header .logo{ display:flex; align-items:center; gap:10px; }
+header .logo img{ height:40px; width:auto; border-radius:8px; }
+
+.site-title{ font-size:1.8rem; font-weight:900; color:#333; text-decoration:none; transition: color .3s; }
+.site-title:hover{ color:#a436f1; }
+.site-title .highlight{ color:#bc2dd1; }
+
+/* Offset page content for fixed header */
+.container, main, .page-content, #signupForm{
+  margin-top: 96px;
+}
+
+/* ============= Signup Card ============= */
+.sign-card{
+  background:#fff;
+  border-radius:26px;
+  box-shadow: 0 26px 70px rgba(63,31,145,.18), 0 8px 18px rgba(0,0,0,.04);
+  position:relative;
+  padding: 88px 28px 28px;        /* room on top for badge; compact overall */
+  max-width: 520px;               /* optional: restrain width nicely */
+  width: 100%;
+}
+
+/* Floating badge above the card */
+.badge-circle{
+  width:84px; height:84px; border-radius:50%;
+  display:grid; place-items:center;
+  position:absolute; left:50%; transform: translate(-50%, -82%); /* <- tuned so it won't cover title */
+  background: linear-gradient(140deg, #c08aff, #f0b3e6);
+  box-shadow: 0 24px 44px rgba(192,138,255,.45);
+  border:6px solid #fff; color:#fff; font-size:24px;
+}
+
+/* Title (you use h4) */
+.sign-card h4{
+  margin-top: 4px;               /* close to badge */
+  margin-bottom: 8px;            /* small gap before first field */
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, #b64bff, #8aa0ff);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* (Optional) If you ever add a subtitle line right under h4, this keeps it tight */
+.sign-card h4 + p{
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.35;
+  color: #6b6b80;
+}
+
+/* Labels */
+.form-label{
+  font-weight: 700;
+  color: #3b3b4a;
+  margin-bottom: 8px;
+}
+
+/* Inputs & selects */
+.form-control,
+.form-select{
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid #ececf3;
+  background: #fafafc;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.02);
+  transition: box-shadow .15s ease, border-color .15s ease;
+}
+
+.form-control:focus,
+.form-select:focus{
+  border-color:#b9a7ff;
+  box-shadow: 0 0 0 6px var(--ring);
+}
+
+/* Group spacing: keep stack snug */
+.sign-card .mb-2{ margin-bottom: 10px; }
+.sign-card .mb-3{ margin-bottom: 12px; }
+
+/* Eye icon inside password fields */
+.input-wrap{ position: relative; }
+.input-wrap .form-control{ padding-right: 48px; } /* space for eye */
+
+.peek{
+  position:absolute; right:12px; top:50%; transform: translateY(-50%);
+  width:34px; height:34px; border-radius:10px;
+  display:grid; place-items:center;
+  background: transparent; border:0; cursor:pointer; color:#8a8aa3; line-height:1;
+}
+.peek:hover{ background: rgba(139,92,246,.08); }
+.peek i{ pointer-events: none; }
+
+/* Submit button (override Bootstrap primary) */
+.btn.btn-primary{
+  border: 0;
+  height: 52px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, var(--violet) 0%, var(--violet-2) 50%, var(--rose) 100%);
+  box-shadow: 0 18px 30px rgba(139,92,246,.30);
+  transition: transform .1s ease, box-shadow .1s ease, opacity .2s ease;
+}
+.btn.btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 22px 38px rgba(139,92,246,.42);
+}
+.btn.btn-primary:active{
+  transform: translateY(0);
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px){
+  .sign-card{ padding: 78px 18px 24px; }
+  .form-control, .form-select{ height: 50px; }
+  .btn.btn-primary{ height: 50px; }
+}
+/* ==== tighten top area & first-field gap (no HTML changes) ==== */
+
+/* give the title less padding from the badge */
+.sign-card{
+  padding-top: 80px !important;            /* was 88 */
+}
+
+/* lift the badge so it doesn't sit on the title glow */
+.badge-circle{
+  transform: translate(-50%, -92%) !important;  /* was around -82% / -86% */
+}
+
+/* title itself (your page uses h4) */
+.sign-card h4{
+  margin-top: 2px !important;              /* close to badge */
+  margin-bottom: 4px !important;           /* tiny gap before subtitle */
+  line-height: 1.2 !important;
+}
+
+/* the line right under the title (works whether it’s <p>, <div>, or anything) */
+.sign-card h4 + *{
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;          /* gap before the first field */
+  line-height: 1.3 !important;
+}
+
+/* ensure the form itself doesn’t add extra space */
+.sign-card form{ margin-top: 0 !important; }
+
+/* first form row shouldn’t add top margin; rest stay snug */
+.sign-card form > *:first-child{ margin-top: 6px !important; }
+.sign-card .mb-2{ margin-bottom: 10px !important; }
+.sign-card .mb-3{ margin-bottom: 12px !important; }

@@ -8,66 +8,72 @@
 <meta charset="UTF-8">
 <title>signup</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../assets/css/style.css" rel="stylesheet" />
-<link href="../assets/imgs/univoice.jpg" rel="icon" />
+<link href="../assets/css/user.css" rel="stylesheet" />
+<link href="../assets/imgs/logo.jpg" rel="icon" />
+<!-- Bootstrap (if you use it) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+
 </head>
 <body>
-<!--  nav bar -->
-<div class="container-fluid nav-custom" >
-	<nav class="navbar navbar-expand-lg nav-custom">
-  <div class="container-fluid nav-custom">
-    <a class="navbar-brand text-white" href="#">UniVoice</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item ms-3">
-          <a class="nav-link text-white " aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item  ms-3">
-          <a class="nav-link text-white" href="#">About</a>
-        </li>
-        <li class="nav-item  ms-3">
-          <a class="nav-link text-white" href="#">Contact</a>
-        </li>
-       
-     
-      </ul>
+<header>
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/assets/imgs/logo.jpg" alt="Logo">
+        <a href="/" class="site-title">Lingua<span class="highlight">Fem</span></a>
     </div>
-  </div>
-</nav>
-</div>
+
+    </header>
+
 
 <!-- Sign Up form -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100 ">
-  <div class="sign-card p-4 " >
-    <h4 class="text-center fw-bold text-primary mb-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Create Student Account</h4>
-    
+  <div class="sign-card p-4">
+
+    <!-- ⭐ badge -->
+    <div class="badge-circle"><i class="fa-solid fa-star"></i></div>
+
+    <h4 class="text-center fw-bold text-primary mb-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Join LinguaFem</h4>
+    <h4 class="text-center fw-bold text-primary mb-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Start your personalized language learning adventure</h4>
+
     <form id="signupForm" method="post" action="../register" onsubmit="return validateForm()">
       <!-- Email -->
       <div class="mb-2">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="your@uit.edu.mm" required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="your@gmail.com" required>
       </div>
 
       <!-- Name -->
       <div class="mb-2">
         <label for="name" class="form-label">Fullname</label>
-        <input type="text" class="form-control" id="name" name="name"   required>
+        <input type="text" class="form-control" id="name" name="name" placeholder="yourname" required>
       </div>
 
       <!-- Password -->
       <div class="mb-2">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password"  required>
-        <div id="passwordHelp" class="form-text text-danger d-none">Password must be at least 8 characters, include uppercase, lowercase, digit, and symbol.</div>
+
+        <div class="input-wrap">
+          <input type="password" class="form-control" id="password" name="password" placeholder="RequiresCapitalLetter,SmallLetter,Number,SpecialCharacter" required>
+          <button type="button" class="peek" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+        </div>
+
+        <div id="passwordHelp" class="form-text text-danger d-none">
+          Password must be at least 8 characters, include uppercase, lowercase, digit, and symbol.
+        </div>
       </div>
 
       <!-- Retype Password -->
       <div class="mb-3">
         <label for="repassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="repassword" name="repassword" required>
+
+        <div class="input-wrap">
+          <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Please type your password exactly" required>
+          <button type="button" class="peek" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+        </div>
+
         <div id="matchHelp" class="form-text text-danger d-none">Passwords do not match.</div>
       </div>
 
@@ -75,6 +81,7 @@
     </form>
   </div>
 </div>
+
 
 <!-- form validation -->
 <script>
@@ -105,6 +112,16 @@ function validateForm() {
 
   return isValid;
 }
+document.querySelectorAll('.input-wrap .peek').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const input = this.previousElementSibling;
+      const icon  = this.querySelector('i');
+      const show  = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      icon.classList.toggle('fa-eye', !show);
+      icon.classList.toggle('fa-eye-slash', show);
+    });
+  });
 </script>
 
 

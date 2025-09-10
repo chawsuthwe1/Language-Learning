@@ -7,50 +7,45 @@
 <title>Login</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="../assets/css/login.css" rel="stylesheet" />
-<link href="../assets/imgs/univoice.jpg" rel="icon" />
+<link href="../assets/imgs/logo.jpg" rel="icon" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
 
 </head>
 <body>
 
 <!--  Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-custom">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">UniVoice</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item ms-3">
-          <a class="nav-link text-white" href="#">Home</a>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link text-white" href="#">About</a>
-        </li>
-        <li class="nav-item ms-3">
-          <a class="nav-link text-white" href="#">Contact</a>
-        </li>
-        <li class="nav-item ms-3">
-          <button type="button" class="btn btn-light ">Login</button>
-        </li>
-      </ul>
+<header>
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/assets/imgs/logo.jpg" alt="Logo">
+        <a href="/" class="site-title">Lingua<span class="highlight">Fem</span></a>
     </div>
-  </div>
-</nav>
+
+    </header>
 
 <!-- Login Form -->
-<div class="login-card mt-4">
-    <h4 class="text-center fw-bold text-primary mb-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Access Your Account</h4>
+<main class="login-wrap">
+<div class="login-card">
+<div class="badge"><i class="fa-solid fa-heart"></i></div>
+    <h4 class="welcome" >Welcome Back</h4>
+    <p class="subtitle">Continue your language learning journey</p>
     <form method="POST" action="/check">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" name="email" id="email" required>
+            <input type="email" class="form-control" name="email" id="email" placeholder="your@gmail.com" required>
         </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" id="password" required>
-        </div>
+        <div class="mb-3 password-field">
+  <label for="password" class="form-label">Password</label>
+
+  <div class="input-wrap">
+    <input type="password" class="form-control" name="password" id="password" placeholder="yourpassword" required>
+    <button type="button" class="peek" aria-label="Show password">
+      <i class="fa-regular fa-eye"></i>
+    </button>
+  </div>
+</div>
+
 
         <div class="mb-5">
             <label for="userType" class="form-label">Choose User :</label>
@@ -58,16 +53,29 @@
                 <option value="">Select user</option>
                 <option value="student">Student</option>
                 <option value="admin">Admin</option>
-                <option value="department">Department</option>
+                
             </select>
         </div>
-
+<div class="row-line">
+        <label class="remember"><input type="checkbox"> Remember me</label>
+       
+      </div>
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary w-100">Login</button>
+            <button type="submit" class="btn-gradient">Sign In</button>
         </div>
     </form>
 </div>
+</main>
+<script>
+  document.querySelector('.password-field .peek')?.addEventListener('click', function () {
+    const input = document.getElementById('password');
+    const icon  = this.querySelector('i');
+    const show  = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    icon.classList.toggle('fa-eye', !show);
+    icon.classList.toggle('fa-eye-slash', show);
+  });
+</script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
