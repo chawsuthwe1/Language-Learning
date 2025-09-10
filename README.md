@@ -1,5 +1,4 @@
 ﻿# Language-Learning
-# Language-Learning
 Language-Learning-Platform (LinguaFem)
 
 LinguaFem is a modern, web-based English learning platform designed to make language study interactive, engaging, and effective. Built with Spring Boot, JSP, and MySQL, it combines adaptive testing, gamified modules, and a clean UI to support learners across different proficiency levels.
@@ -48,3 +47,4 @@ Build Tool: Maven
 Server: Embedded Tomcat (default port: 8080)
 
 📂 Project Structure
+
