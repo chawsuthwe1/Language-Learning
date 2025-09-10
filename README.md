@@ -71,7 +71,7 @@ Build & Run
 mvn spring-boot:run
 
 Access the app
-Open http://localhost:8080
+Open http://localhost:8082
 
 🎯 Target Audience
 
@@ -84,3 +84,4 @@ Developers interested in Spring Boot + JSP projects
 📖 Educational Philosophy
 
 LinguaFem emphasizes learning through interaction and gamification rather than rote memorization. By combining puzzles, stories, and flashcards, it adapts to diverse learning styles while keeping lessons fun and effective.
+
